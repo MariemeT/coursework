@@ -6,7 +6,6 @@
 library(dplyr)
 library(ggplot2)
 library(reshape)
-library(scales)
 
 # be picky about white backgrounds on our plots
 theme_set(theme_bw())
@@ -20,22 +19,22 @@ load('trips.RData')
 ########################################
 
 # plot the distribution of trip times across all rides
-
+ggplot(trips, aes(tripduration)) + geom_histogram() + xlim(0, 3600*3)
 # plot the distribution of trip times by rider type
-
+ggplot(trips, aes(tripduration, color = usertype)) + geom_density() + xlim(0, 3600*3)
 # plot the number of trips over each day
-
+ggplot(trips, aes(x = ymd)) + geom_bar()
 # plot the number of trips by gender and age
-
+trips_group <- trips %>% group_by(gender, birth_year) %>% summarise(count =n())
+ggplot(trips_group, aes(x = birth_year, y = count, color = as.factor(gender))) + geom_point() + xlim(1950, 2000)
 ########################################
 # plot trip and weather data
 ########################################
 
 # join trips and weather
 trips_with_weather <- inner_join(trips, weather, by="ymd")
-
 # plot the minimum temperature over each day
-
+ ggplot(weather, aes(ymd,tmin)) + geom_point()+geom_smooth()
 # plot the number of trips as a function of the minimum temperature, where each point represents a day
 # you'll need to summarize the trips and join to the weather data to do this
 

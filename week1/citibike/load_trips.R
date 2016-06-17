@@ -1,7 +1,7 @@
 library(dplyr)
 library(readr)
 
-# define a function to turn strings into datetimes
+# define a function to turn strings into datetimeslibrary()
 parse_datetime <- function(s, format="%Y-%m-%d %H:%M:%S") {
   as.POSIXct(as.character(s), format=format)
 }
