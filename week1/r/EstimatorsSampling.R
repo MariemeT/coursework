@@ -19,7 +19,7 @@ ggplot(trop,aes(price)) + geom_histogram() +geom_vline(xintercept=mean(trop$pric
 ggplot() + geom_histogram(mapping = aes(dom$price), fill = "red") + geom_histogram(mapping = aes(min$price), fill = "yellow") + geom_histogram(mapping = aes(trop$price), fill = "orange")
 
 #Repeat ii), faceted by brand.
-same as above
+#same as above
 
 #What do these graphs tell you about the variation in price? Why do the log plots look different? Do you find them more/less informative?
 
